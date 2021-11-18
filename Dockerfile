@@ -3,7 +3,7 @@ RUN apk update && apk add build-base
 
 COPY . /code/
 WORKDIR /code
-RUN pip install -r requirements.txt
+RUN pip install --user -r requirements.txt
 
 FROM python:3.9-alpine
 
