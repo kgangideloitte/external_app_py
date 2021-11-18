@@ -9,19 +9,19 @@ pipeline {
         stage('Run the tests') {
             agent {
                 docker { 
-                    image 'python:3.9-alpine'
+                    image 'python:3.9'
                     // args '-e HOME=/tmp -e NPM_CONFIG_PREFIX=/tmp/.npm'
                     // reuseNode true
                 }
             }
             steps {
-                echo 'Retrieve source from github. run npm install and npm test'
+                echo 'Retrieve source from github.'
 				git branch: 'main',
 					url: 'https://github.com/kgangideloitte/external_app_py.git'
 				echo 'Do I have the files?'
 				sh "ls -la"
 				echo 'Run python install requirements'
-				sh "pip install -r requirements.txt"
+				sh "pip install --user -r requirements.txt"
 				echo 'Run python test'
 				sh "python test_app.py" 
             }
