@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+<ul >
+    {% for event in model['events'] %}
+      <li>
+          <h2>{{ event["title"] }}</h2>
+          <p>{{ event["description"] }}</p>
+      </li>
+      {% endfor %}
+      {% if not 'events' in model %}
+        It looks like the events service isn't running just now.
+      {% endif %}
+  </ul>
+{% endblock %}
